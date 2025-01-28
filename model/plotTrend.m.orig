@@ -1,0 +1,45 @@
+function plotTrend(hAx, Y, k, lineStyle, holdAxes)    
+    % hAx: sub figures handles
+    % Y: outputs
+    % k: sample time
+    
+    if nargin == 3
+        lineStyle = '-b';
+        holdAxes = 'off';
+    end
+    
+    t = Y.Time(1:k)/3600;
+    t_range = [Y.Time(k)/3600-3 Y.Time(k)/3600];
+    
+    
+    hold(hAx(1), holdAxes);
+    hold(hAx(2), holdAxes);
+    hold(hAx(3), holdAxes);
+    hold(hAx(4), holdAxes);
+    hold(hAx(5), holdAxes);
+    hold(hAx(6), holdAxes);
+    
+    % Plots during sim
+    plot(hAx(1), t, Y.HOLDUP(end,1:k), lineStyle);
+    ylim(hAx(1), [0 1]); xlim(hAx(1), t_range); 
+
+    plot(hAx(2), t, Y.WHP(1:k)*1e-5, lineStyle);
+%     ylim(hAx(2), [0 1]); 
+    xlim(hAx(2), t_range); 
+    
+    plot(hAx(3), t, Y.BHCP(1:k)*1e-5, lineStyle);
+%     ylim(hAx(3), [0 1]); 
+    xlim(hAx(3), t_range); 
+
+%     plot(hAx(4), t, Y.P2(1:k), lineStyle);
+%     ylim(hAx(3), [0 1]); 
+%     xlim(hAx(4), t_range); 
+    
+%     plot(hAx(5), t, Y.P3(1:k), lineStyle);
+%     ylim(hAx(3), [0 1]); 
+%     xlim(hAx(5), t_range); 
+    
+%     plot(hAx(6), t, Y.P4(1:k), lineStyle);
+%     ylim(hAx(3), [0 1]); 
+%     xlim(hAx(6), t_range); 
+end
